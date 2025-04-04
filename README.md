@@ -5,13 +5,13 @@ This script scans a given IP range for `phpinfo.php` files.
 ## Usage
 
 ```bash
-python phpinfo_scanner.py <ip_range_in_cidr>
+python3 phpinfo_scanner.py <ip_range_in_cidr>
 ```
 
 For example:
 
 ```bash
-python phpinfo_scanner.py 192.168.1.0/24
+python3 phpinfo_scanner.py 192.168.1.0/24
 ```
 
 ## Requirements
