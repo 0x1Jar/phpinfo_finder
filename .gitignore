@@ -1,5 +1,5 @@
 .env
 error_log.txt
 phpinfo_results.txt
-results.txt
+result.txt
 *_phpinfo
