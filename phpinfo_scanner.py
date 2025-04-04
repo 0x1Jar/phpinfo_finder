@@ -3,11 +3,25 @@ import requests
 import argparse
 from dotenv import load_dotenv
 import ipaddress
+import time
 
 # Load environment variables from .env file
 load_dotenv()
 
-import time
+# ASCII Banner
+def print_banner():
+    banner = """[32m
+ ░▒▓███████▓▒░ ░▒▓█▓▒░░▒▓█▓▒░░▒▓███████▓▒░ ░▒▓█▓▒░░▒▓███████▓▒░ ░▒▓████████▓▒░░▒▓██████▓▒░  
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓███████▓▒░ ░▒▓████████▓▒░░▒▓███████▓▒░ ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░ ░▒▓█▓▒░░▒▓█▓▒░ 
+ ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░by 0xjar░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░       ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░       ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ 
+░▒▓█▓▒░       ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░       ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░       ░▒▓██████▓▒░                                                                                                                                                                                   
+[0m"""
+    print(banner)
+    print("\n🔍 PHP Info Scanner 🔍")
+    print("Scan IP ranges for phpinfo.php files 🌐\n")
 
 def scan_ip(ip_address, output_file=None):
     retries = 3
@@ -88,6 +102,9 @@ def get_ip_range(cidr):
         return []
 
 def main():
+    # Print the banner
+    print_banner()
+
     parser = argparse.ArgumentParser(description="Scan for phpinfo.php in an IP range.")
     parser.add_argument("cidr", help="IP range in CIDR notation (e.g., 192.168.1.0/24)")
     parser.add_argument("-o", "--output", help="Output file to save scan results (if not specified, results will only be displayed in console)")
@@ -105,7 +122,9 @@ def main():
         phpinfo_file = f"{output_file}_phpinfo"
         with open(phpinfo_file, "w") as f:
             f.write(f"--- Successful phpinfo.php findings at {time.strftime('%Y-%m-%d %H:%M:%S')} ---\n")
-        print(f"[*] Saving results to {output_file} and {phpinfo_file}")
+        print(f"[*] 📁 Saving results to {output_file} and {phpinfo_file}")
+    else:
+        print("[*] 📊 Results will only be displayed in console (use -o option to save to file)")
 
     ip_range = get_ip_range(args.cidr)
     if ip_range:
