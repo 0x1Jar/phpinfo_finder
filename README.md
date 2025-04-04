@@ -17,8 +17,10 @@ python phpinfo_scanner.py 192.168.1.0/24
 ## Requirements
 
 *   Python 3.x
+*   pip
 *   requests
 *   ipaddress
+*   dotenv
 
 ## License
 
