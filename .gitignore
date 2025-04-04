@@ -1,3 +1,5 @@
 .env
 error_log.txt
 phpinfo_results.txt
+scan_results.txt
+*_phpinfo
